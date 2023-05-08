@@ -25,6 +25,7 @@ com\portfolio\mgf\service\EducacionService.class
 com\portfolio\mgf\security\dto\NuevoUsuario.class
 com\portfolio\mgf\security\repository\IRolRepository.class
 com\portfolio\mgf\service\PersonaService.class
+com\portfolio\mgf\WebConfig.class
 com\portfolio\mgf\dto\PersonaDto.class
 com\portfolio\mgf\entity\Proyecto.class
 com\portfolio\mgf\MgfApplication.class
