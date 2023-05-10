@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 HELP.md
+=======
+
+>>>>>>> f24e7067096d631939aca6f18bed816a9d2d1fcb
 ##target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+<<<<<<< HEAD
+=======
+
+>>>>>>> f24e7067096d631939aca6f18bed816a9d2d1fcb
 
 ### STS ###
 .apt_generated
