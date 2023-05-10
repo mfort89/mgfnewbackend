@@ -1,11 +1,9 @@
-HELP.md
-<<<<<<< HEAD
-=======
+
 ##target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
->>>>>>> e349d2982fe2c15666168683fea7f5ff00e5ce05
+
 
 ### STS ###
 .apt_generated
