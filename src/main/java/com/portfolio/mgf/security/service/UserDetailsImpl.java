@@ -1,7 +1,12 @@
-package com.portfolio.mgf.security.service;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.portfolio.mgf.Security.Service;
 
-import com.portfolio.mgf.security.entity.Usuario;
-import com.portfolio.mgf.security.entity.UsuarioPrincipal;
+import com.portfolio.mgf.Security.Entity.Usuario;
+import com.portfolio.mgf.Security.Entity.UsuarioPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,4 +23,6 @@ public class UserDetailsImpl implements UserDetailsService{
         Usuario usuario = usuarioService.getByNombreUsuario(nombreUsuario).get();
         return UsuarioPrincipal.build(usuario);
     }
+    
+    
 }

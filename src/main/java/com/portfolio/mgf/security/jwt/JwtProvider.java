@@ -1,6 +1,11 @@
-package com.portfolio.mgf.security.jwt;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.portfolio.mgf.Security.jwt;
 
-import com.portfolio.mgf.security.entity.UsuarioPrincipal;
+import com.portfolio.mgf.Security.Entity.UsuarioPrincipal;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
@@ -32,7 +37,7 @@ public class JwtProvider {
                 .compact();
     }
     
-    public String getNombreUsuarioFromToken(String token){
+    public String getNombreUSuarioFromToken(String token){
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
     }
     
@@ -40,20 +45,15 @@ public class JwtProvider {
         try{
             Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
             return true;
-        }
-        catch(MalformedJwtException e){
+        }catch (MalformedJwtException e){
             logger.error("Token mal formado");
-        }
-        catch(UnsupportedJwtException e){
+        }catch (UnsupportedJwtException e){
             logger.error("Token no soportado");
-        }
-        catch(ExpiredJwtException e){
+        }catch (ExpiredJwtException e){
             logger.error("Token expirado");
-        }
-        catch(IllegalArgumentException e){
-            logger.error("Token vacío");
-        }
-        catch(SignatureException e){
+        }catch (IllegalArgumentException e){
+            logger.error("Token vacio");
+        }catch (SignatureException e){
             logger.error("Firma no válida");
         }
         return false;

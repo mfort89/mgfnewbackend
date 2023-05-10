@@ -1,4 +1,9 @@
-package com.portfolio.mgf.entity;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.portfolio.mgf.Entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,25 +15,17 @@ public class Educacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String tituloEd;
-    private String institucion;
-    private int fechaInicio;
-    private int fechaFin;
-    private String descripcionEd;
+    private String nombreE;
+    private String descripcionE;
 
-    //Constructor
     public Educacion() {
     }
 
-    public Educacion(String tituloEd, String institucion, int fechaInicio, int fechaFin, String descripcionEd) {
-        this.tituloEd = tituloEd;
-        this.institucion = institucion;
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
-        this.descripcionEd = descripcionEd;
+    public Educacion(String nombreE, String descripcionE) {
+        this.nombreE = nombreE;
+        this.descripcionE = descripcionE;
     }
 
-    //Getter y Setter
     public int getId() {
         return id;
     }
@@ -37,45 +34,21 @@ public class Educacion {
         this.id = id;
     }
 
-    public String getTituloEd() {
-        return tituloEd;
+    public String getNombreE() {
+        return nombreE;
     }
 
-    public void setTituloEd(String tituloEd) {
-        this.tituloEd = tituloEd;
+    public void setNombreE(String nombreE) {
+        this.nombreE = nombreE;
     }
 
-    public String getInstitucion() {
-        return institucion;
+    public String getDescripcionE() {
+        return descripcionE;
     }
 
-    public void setInstitucion(String institucion) {
-        this.institucion = institucion;
+    public void setDescripcionE(String descripcionE) {
+        this.descripcionE = descripcionE;
     }
-
-    public int getFechaInicio() {
-        return fechaInicio;
-    }
-
-    public void setFechaInicio(int fechaInicio) {
-        this.fechaInicio = fechaInicio;
-    }
-
-    public int getFechaFin() {
-        return fechaFin;
-    }
-
-    public void setFechaFin(int fechaFin) {
-        this.fechaFin = fechaFin;
-    }
-
-    public String getDescripcionEd() {
-        return descripcionEd;
-    }
-
-    public void setDescripcionEd(String descripcionEd) {
-        this.descripcionEd = descripcionEd;
-    }
-
+    
     
 }

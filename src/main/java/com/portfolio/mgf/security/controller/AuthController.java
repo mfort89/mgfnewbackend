@@ -1,14 +1,19 @@
-package com.portfolio.mgf.security.controller;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.portfolio.mgf.Security.Controller;
 
-import com.portfolio.mgf.security.dto.JwtDto;
-import com.portfolio.mgf.security.dto.LoginUsuario;
-import com.portfolio.mgf.security.dto.NuevoUsuario;
-import com.portfolio.mgf.security.entity.Rol;
-import com.portfolio.mgf.security.entity.Usuario;
-import com.portfolio.mgf.security.enums.RolNombre;
-import com.portfolio.mgf.security.jwt.JwtProvider;
-import com.portfolio.mgf.security.service.RolService;
-import com.portfolio.mgf.security.service.UsuarioService;
+import com.portfolio.mgf.Security.Dto.JwtDto;
+import com.portfolio.mgf.Security.Dto.LoginUsuario;
+import com.portfolio.mgf.Security.Dto.NuevoUsuario;
+import com.portfolio.mgf.Security.Entity.Rol;
+import com.portfolio.mgf.Security.Entity.Usuario;
+import com.portfolio.mgf.Security.Enums.RolNombre;
+import com.portfolio.mgf.Security.Service.RolService;
+import com.portfolio.mgf.Security.Service.UsuarioService;
+import com.portfolio.mgf.Security.jwt.JwtProvider;
 import java.util.HashSet;
 import java.util.Set;
 import javax.validation.Valid;
@@ -30,7 +35,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins ="https://joana-coll.web.app")
+@CrossOrigin(origins = {""})
 public class AuthController {
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -45,39 +50,39 @@ public class AuthController {
     
     @PostMapping("/nuevo")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-            return new ResponseEntity(new Mensaje("Campos mal puestos o email invalido"), HttpStatus.BAD_REQUEST);
-        }
-        if(usuarioService.existsByNombreUsuario(nuevoUsuario.getNombreUsuario())){
-            return new ResponseEntity(new Mensaje("Ese nombre de usuario ya existe"), HttpStatus.BAD_REQUEST);
-        }
-        if(usuarioService.existsByEmail(nuevoUsuario.getEmail())){
-            return new ResponseEntity(new Mensaje("Ese email ya existe"), HttpStatus.BAD_REQUEST);
-        }
+        if(bindingResult.hasErrors())
+            return new ResponseEntity(new Mensaje("Campos mal puestos o email invalido"),HttpStatus.BAD_REQUEST);
         
-        Usuario usuario = new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getNombreUsuario(), nuevoUsuario.getEmail(), passwordEncoder.encode(nuevoUsuario.getPassword()));
+        if(usuarioService.existsByNombreUsuario(nuevoUsuario.getNombreUsuario()))
+            return new ResponseEntity(new Mensaje("Ese nombre de usuario ya existe"), HttpStatus.BAD_REQUEST);
+        
+        if(usuarioService.existsByEmail(nuevoUsuario.getEmail()))
+            return new ResponseEntity(new Mensaje("Ese email ya existe"), HttpStatus.BAD_REQUEST);
+        
+        Usuario usuario = new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getNombreUsuario(),
+            nuevoUsuario.getEmail(), passwordEncoder.encode(nuevoUsuario.getPassword()));
         
         Set<Rol> roles = new HashSet<>();
         roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
         
-        if(nuevoUsuario.getRoles().contains("admin")){
+        if(nuevoUsuario.getRoles().contains("admin"))
             roles.add(rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get());
-        }
-        
         usuario.setRoles(roles);
         usuarioService.save(usuario);
-        return new ResponseEntity(new Mensaje("Usuario guardado"), HttpStatus.CREATED);
+        
+        return new ResponseEntity(new Mensaje("Usuario guardado"),HttpStatus.CREATED);
     }
     
     @PostMapping("/login")
     public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
+        if(bindingResult.hasErrors())
             return new ResponseEntity(new Mensaje("Campos mal puestos"), HttpStatus.BAD_REQUEST);
-        }
         
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUsuario.getNombreUsuario(), loginUsuario.getPassword()));
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+        loginUsuario.getNombreUsuario(), loginUsuario.getPassword()));
         
         SecurityContextHolder.getContext().setAuthentication(authentication);
+        
         String jwt = jwtProvider.generateToken(authentication);
         
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -86,4 +91,5 @@ public class AuthController {
         
         return new ResponseEntity(jwtDto, HttpStatus.OK);
     }
+    
 }

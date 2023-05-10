@@ -1,4 +1,9 @@
-package com.portfolio.mgf.entity;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.portfolio.mgf.Entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,25 +15,21 @@ public class Experiencia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String tituloEx;
-    private String empleador;
-    private int fechaInicio;
-    private int fechaFin;
-    private String descripcionEx;
+    private String nombreE;
+    private String descripcionE;
+    
+    //Constructores
 
-    //Constructor
     public Experiencia() {
     }
 
-    public Experiencia(String tituloEx, String empleador, int fechaInicio, int fechaFin, String descripcionEx) {
-        this.tituloEx = tituloEx;
-        this.empleador = empleador;
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
-        this.descripcionEx = descripcionEx;
+    public Experiencia(String nombreE, String descripcionE) {
+        this.nombreE = nombreE;
+        this.descripcionE = descripcionE;
     }
+    
+    //Getters and setters
 
-    //Getter y setter
     public int getId() {
         return id;
     }
@@ -37,45 +38,20 @@ public class Experiencia {
         this.id = id;
     }
 
-    public String getTituloEx() {
-        return tituloEx;
+    public String getNombreE() {
+        return nombreE;
     }
 
-    public void setTituloEx(String tituloEx) {
-        this.tituloEx = tituloEx;
+    public void setNombreE(String nombreE) {
+        this.nombreE = nombreE;
     }
 
-    public String getEmpleador() {
-        return empleador;
+    public String getDescripcionE() {
+        return descripcionE;
     }
 
-    public void setEmpleador(String empleador) {
-        this.empleador = empleador;
+    public void setDescripcionE(String descripcionE) {
+        this.descripcionE = descripcionE;
     }
-
-    public int getFechaInicio() {
-        return fechaInicio;
-    }
-
-    public void setFechaInicio(int fechaInicio) {
-        this.fechaInicio = fechaInicio;
-    }
-
-    public int getFechaFin() {
-        return fechaFin;
-    }
-
-    public void setFechaFin(int fechaFin) {
-        this.fechaFin = fechaFin;
-    }
-
-    public String getDescripcionEx() {
-        return descripcionEx;
-    }
-
-    public void setDescripcionEx(String descripcionEx) {
-        this.descripcionEx = descripcionEx;
-    }
-    
     
 }

@@ -1,8 +1,13 @@
-package com.portfolio.mgf.security.service;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.portfolio.mgf.Security.Service;
 
-import com.portfolio.mgf.security.entity.Rol;
-import com.portfolio.mgf.security.enums.RolNombre;
-import com.portfolio.mgf.security.repository.IRolRepository;
+import com.portfolio.mgf.Security.Entity.Rol;
+import com.portfolio.mgf.Security.Enums.RolNombre;
+import com.portfolio.mgf.Security.Repository.iRolRepository;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +17,7 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class RolService {
     @Autowired
-    IRolRepository irolRepository;
+    iRolRepository irolRepository;
     
     public Optional<Rol> getByRolNombre(RolNombre rolNombre){
         return irolRepository.findByRolNombre(rolNombre);
